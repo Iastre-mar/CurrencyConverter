@@ -14,7 +14,7 @@ public class ReadView implements View {
     @Override
     public void refresh(ModelData modelData) {
         currentDTO = modelData.getActiveCurrency();
-        currentDTOList = modelData.getСurrencies();
+        currentDTOList = modelData.getCurrencies();
     }
 
     @Override

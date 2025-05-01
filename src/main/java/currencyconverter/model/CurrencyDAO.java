@@ -20,13 +20,13 @@ public class CurrencyDAO implements Model {
     @Override
     public void getAllCurrencies() {
         List<CurrencyDTO> allCurrencies = service.getAllCurrencies();
-        modelData.setСurrencies(allCurrencies);
+        modelData.setCurrencies(allCurrencies);
     }
 
     @Override
     public void getCurrencyByCode(String code) {
         CurrencyDTO activeCurrency = service.getCurrencyByCode(code);
-        modelData.setActiveСurrency(activeCurrency);
+        modelData.setActiveCurrency(activeCurrency);
     }
 
 }

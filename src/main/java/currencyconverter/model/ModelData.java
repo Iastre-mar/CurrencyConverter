@@ -12,15 +12,17 @@ public class ModelData {
         return activeCurrency;
     }
 
-    public void setActiveСurrency(CurrencyDTO activeCurrency) {
+    public void setActiveCurrency(CurrencyDTO activeCurrency) {
         this.activeCurrency = activeCurrency;
     }
 
-    public List<CurrencyDTO> getСurrencies() {
+    public List<CurrencyDTO> getCurrencies() {
         return currencies;
     }
 
-    public void setСurrencies(List<CurrencyDTO> currencies) {
+    public void setCurrencies(List<CurrencyDTO> currencies) {
         this.currencies = currencies;
     }
+
+
 }
