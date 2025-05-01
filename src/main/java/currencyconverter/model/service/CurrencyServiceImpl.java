@@ -62,7 +62,19 @@ public class CurrencyServiceImpl implements CurrencyService{
     }
 
     @Override
-    public void createCurrency(CurrencyDTO dto) {
+    public CurrencyDTO createCurrency(CurrencyDTO dto) {
+        String sql = "INSERT INTO currencies (code, fullname, sign) VALUES (?,?,?)";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            pstmt.setString(1, dto.code());
+            pstmt.setString(2, dto.fullName());
+            pstmt.setString(3, dto.sign());
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return getCurrencyByCode(dto.code());
     }
 }

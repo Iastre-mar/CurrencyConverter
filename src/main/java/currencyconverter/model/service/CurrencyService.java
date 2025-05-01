@@ -10,6 +10,6 @@ public interface CurrencyService {
 
     CurrencyDTO getCurrencyByCode(String code);
 
-    void createCurrency(CurrencyDTO dto);
+    CurrencyDTO createCurrency(CurrencyDTO dto);
 
 }

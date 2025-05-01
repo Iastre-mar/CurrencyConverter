@@ -27,4 +27,11 @@ public class CurrencyModel implements Model {
         modelData.setActiveCurrency(activeCurrency);
     }
 
+    @Override
+    public void createCurrency(CurrencyDTO currencyDTO) {
+        CurrencyDTO activeCurrency = service.createCurrency(currencyDTO);
+        modelData.setActiveCurrency(activeCurrency);
+    }
+
+
 }
