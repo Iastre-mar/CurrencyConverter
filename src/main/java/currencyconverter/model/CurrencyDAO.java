@@ -5,55 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import currencyconverter.dto.CurrencyDTO;
+import currencyconverter.model.service.CurrencyService;
+import currencyconverter.model.service.CurrencyServiceImpl;
 
-public class CurrencyDAO {
+public class CurrencyDAO implements Model {
+    private CurrencyService service = new CurrencyServiceImpl();
+    private ModelData modelData = new ModelData();
 
-    public List<CurrencyDTO> getAllCurrencies() {
-        List<CurrencyDTO> currencies = new ArrayList<>();
-
-        String sql = "SELECT id, code, fullname, sign FROM currencies";
-
-        try (Connection conn = DatabaseManager.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                CurrencyDTO currency = new CurrencyDTO(
-                        rs.getInt("id"),
-                        rs.getString("code"),
-                        rs.getString("fullname"),
-                        rs.getString("sign")
-                );
-                currencies.add(currency);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return currencies;
+    @Override
+    public ModelData getModelData() {
+        return modelData;
     }
 
-    public CurrencyDTO getCurrencyById(int id) {
-        String sql = "SELECT id, code, fullname, sign FROM currencies WHERE id = ?";
-
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                return new CurrencyDTO(
-                        rs.getInt("id"),
-                        rs.getString("code"),
-                        rs.getString("fullname"),
-                        rs.getString("sign")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    @Override
+    public void getAllCurrencies() {
+        List<CurrencyDTO> allCurrencies = service.getAllCurrencies();
+        modelData.setСurrencies(allCurrencies);
     }
+
+    @Override
+    public void getCurrencyByCode(String code) {
+        CurrencyDTO activeCurrency = service.getCurrencyByCode(code);
+        modelData.setActiveСurrency(activeCurrency);
+    }
+
 }

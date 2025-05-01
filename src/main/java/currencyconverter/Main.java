@@ -1,20 +1,32 @@
 package currencyconverter;
 
+import currencyconverter.controller.CurrencyController;
 import currencyconverter.model.CurrencyDAO;
 import currencyconverter.dto.CurrencyDTO;
+import currencyconverter.model.Model;
+import currencyconverter.view.ReadView;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        CurrencyDAO currencyDao = new CurrencyDAO();
+        Model model = new CurrencyDAO();
+        CurrencyController controller = new CurrencyController();
+        ReadView readView = new ReadView();
 
-        List<CurrencyDTO> currencies = currencyDao.getAllCurrencies();
+        controller.setModel(model);
+        controller.setReadView(readView);
+
+        readView.setController(controller);
+
+        readView.fireEventGetAllCurrencies();
+        List<CurrencyDTO> currencies = readView.getCurrentDTOList();
         System.out.println("Все валюты:");
         currencies.forEach(System.out::println);
 
-        CurrencyDTO usd = currencyDao.getCurrencyById(1);
-        System.out.println("\nВалюта с ID=1:");
+        readView.fireEventGetCurrencyByCode("USD");
+        CurrencyDTO usd = readView.getCurrentDTO();
+        System.out.println("\nВалюта USD:");
         System.out.println(usd);
     }
 }
