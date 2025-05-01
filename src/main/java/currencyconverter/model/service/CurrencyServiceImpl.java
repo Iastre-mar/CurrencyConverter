@@ -1,7 +1,6 @@
 package currencyconverter.model.service;
 
 import currencyconverter.dto.CurrencyDTO;
-import currencyconverter.model.CurrencyDAO;
 import currencyconverter.model.DatabaseManager;
 
 import java.sql.*;

@@ -1,16 +1,14 @@
 package currencyconverter.model;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import currencyconverter.dto.CurrencyDTO;
 import currencyconverter.model.service.CurrencyService;
 import currencyconverter.model.service.CurrencyServiceImpl;
 
-public class CurrencyDAO implements Model {
-    private CurrencyService service = new CurrencyServiceImpl();
-    private ModelData modelData = new ModelData();
+public class CurrencyModel implements Model {
+    private final CurrencyService service = new CurrencyServiceImpl();
+    private final ModelData modelData = new ModelData();
 
     @Override
     public ModelData getModelData() {

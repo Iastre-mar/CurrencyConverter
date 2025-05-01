@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseManager {
+
+    private DatabaseManager() {
+    }
+
     private static final String DB_URL = DatabaseManager.class.getClassLoader()
                                                               .getResource("currencydb")
                                                               .getPath();

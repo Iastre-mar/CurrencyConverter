@@ -1,7 +1,7 @@
 package currencyconverter;
 
 import currencyconverter.controller.CurrencyController;
-import currencyconverter.model.CurrencyDAO;
+import currencyconverter.model.CurrencyModel;
 import currencyconverter.dto.CurrencyDTO;
 import currencyconverter.model.Model;
 import currencyconverter.view.ReadView;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Model model = new CurrencyDAO();
+        Model model = new CurrencyModel();
         CurrencyController controller = new CurrencyController();
         ReadView readView = new ReadView();
 
